@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container>h1,
+        .container>p {
+            text-align: center;
+            font-size: 40;
+        }
+        
+        .container>div {
+            display: flex;
+        }
+        
+        .container>div>div {
+            width: 32%;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            margin: auto;
+            padding: 2%;
+            text-align: center;
+        }
+        
+        .container>div>div>button {
+            font-size: 20px;
+            padding: 25;
+            border: 1px solid blue;
+            color: blue;
+            font-weight: 10%;
+        }
+        
+        .container>div>div:nth-child(1) h2 {
+            color: green;
+        }
+        
+        .container>div>div:nth-child(2) h2 {
+            color: yellowgreen;
+        }
+        
+        .container>div>div:nth-child(3) h2 {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Choose a plan that right for your business</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam deserunt voluptas nulla aliquam facilis odit!</p>
+        <div>
+            <div>
+                <h3>Starter Pack</h3>
+                <h2>Free</h2>
+                <p><i>Per Month</i></p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci maxime molestias rem deleniti voluptate tempora qui odio obcaecati quia doloribus.</p>
+                <button>Start Now</button>
+            </div>
+            <div>
+                <h3>Starter Pack</h3>
+                <h2>$39.00</h2>
+                <p><i>Per Month</i></p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro nam labore accusantium ex enim eaque!</p>
+                <button>Start Now</button></div>
+            <div>
+                <h3>Starter Pack</h3>
+                <h2>$59.00</h2>
+                <p><i>Per Month</i></p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro nam labore accusantium ex enim eaque!</p>
+                <button>Start Now</button></div>
+        </div>
+    </div>
+</body>
+
+</html>
