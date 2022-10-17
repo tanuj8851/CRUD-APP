@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web-111 C1 Evaluation</title>
+
+    <style>
+        body {
+            background-color: rgb(250, 250, 250);
+        }
+        
+        .container {
+            background-color: rgb(253, 249, 249);
+        }
+        
+        .top {
+            height: 400px;
+            width: 70%;
+            background-color: rgb(241, 251, 251);
+            display: flex;
+            margin: auto;
+        }
+        
+        #top-child {
+            height: 100%;
+            width: 50%;
+            margin-left: 20px;
+        }
+        
+        #top-child h2 {
+            margin-top: 150px;
+        }
+        
+        #top-child button {
+            background-color: green;
+            color: white;
+            border: none;
+        }
+        
+        #side-child {
+            display: grid;
+            grid-template-columns: 100px 100px;
+            margin: auto;
+            gap: 15px;
+            text-align: center;
+        }
+        
+        #side-child div {
+            height: 100px;
+            width: 100%;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            border-radius: 10%;
+        }
+        
+        .mid {
+            height: 400px;
+            width: 100%;
+            text-align: center;
+            background-color: white;
+            border-radius: 1%;
+        }
+        
+        #mid-one {
+            height: 80%;
+            width: 70%;
+            margin: auto;
+            display: flex;
+            justify-content: space-evenly;
+        }
+        
+        #mid-one div {
+            height: 100%;
+            width: 30%;
+        }
+        
+        #mid-one div img {
+            height: 80%;
+            width: 100%;
+        }
+        
+        .bottom {
+            height: 400px;
+            width: 70%;
+            background-color: rgb(116, 217, 183);
+            text-align: center;
+            margin: auto;
+            border-radius: 1%;
+        }
+        
+        #bottom-one {
+            height: 100px;
+            width: 70%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 100px 100px 100px;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        #bottom-one div {
+            margin-top: 10%;
+        }
+        
+        #bottom-one button {
+            width: 100px;
+            background-color: rgb(38, 156, 117);
+            color: white;
+            border: none;
+        }
+        
+        .info {
+            height: 250px;
+            width: 66%;
+            margin: auto;
+            background-color: rgb(32, 178, 129);
+            display: flex;
+            padding: 23px;
+            margin-top: 20px;
+            border-radius: 1%;
+        }
+        
+        .info div {
+            color: white;
+        }
+        
+        .info button {
+            background-color: white;
+            color: rgb(32, 178, 129);
+            padding: 15px 10px;
+            border: none;
+        }
+        
+        @media screen and (min-width:701px) and (max-width:1000px) {
+            /* Here Write all the necessery styles for Medium Screen size  */
+        }
+        
+        @media screen and (min-width:100px) and (max-width:700px) {
+            /* Here Write all the necessery styles for Small Screen size  */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="top">
+            <!-- This is the top part. Here should be 2 divs(flex) and inside the second div there should be 6 more divs(Grid) -->
+            <div id="top-child">
+                <h2>Invest In IPOs</h2>
+                <p>Trusted by Millions of Indians.Start Investing Today.</p>
+                <button>Get Started</button>
+            </div>
+            <div id="side-child">
+                <div>Mutual Funds</div>
+                <div>Stocks</div>
+                <div>Futures % Options</div>
+                <div>Us Stocks</div>
+                <div>IPOs</div>
+                <div>Fixed Deposits</div>
+            </div>
+        </div>
+        <div class="mid">
+            <!-- This is the mid part. Here you should have div where there will be 3 more divs(flex)  -->
+            <h2>Keep Learning. Keep Growing.</h2>
+            <div id="mid-one">
+
+                <div>
+                    <img src="https://assets-netstorage.groww.in/web-assets/billion_groww_desktop/prod/build/client/images/blog1.d3a78143.png" alt="">
+                    <p>How to Select/Picks Stocks for Intraday</p>
+                </div>
+                <div>
+
+                    <img src="https://assets-netstorage.groww.in/web-assets/billion_groww_desktop/prod/build/client/images/blog1.d3a78143.png" alt="">
+                    <p>Begainers Guide to Mutual Funds</p>
+                </div>
+                <div>
+                    <img src="https://assets-netstorage.groww.in/web-assets/billion_groww_desktop/prod/build/client/images/blog1.d3a78143.png" alt="">
+                    <p>How to Diversify in the time of Market Volatility</p>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <!-- This is the bottom part. Here you should have div where there will be 6 more divs(Grid)  -->
+            <h2>Discover Mutual Funds</h2>
+            <p>Search Mutual Funds,AMC's etc.</p>
+            <div id="bottom-one">
+                <div>
+                    <img src="https://storage.googleapis.com/groww-assets/mf-assets/web/collection/light/high_returns.svg" alt="">
+                    <p>High return</p>
+                </div>
+                <div>
+                    <img src="https://storage.googleapis.com/groww-assets/mf-assets/web/collection/light/high_returns.svg" alt="">
+                    <p>SIP with 500</p>
+                </div>
+                <div>
+                    <img src="https://storage.googleapis.com/groww-assets/mf-assets/web/collection/light/high_returns.svg" alt="">
+                    <p>Tax Savings </p>
+                </div>
+                <div>
+                    <img src="https://storage.googleapis.com/groww-assets/mf-assets/web/collection/light/high_returns.svg" alt="">
+                    <p>Large Cap</p>
+                </div>
+                <div>
+                    <img src="https://storage.googleapis.com/groww-assets/mf-assets/web/collection/light/high_returns.svg" alt="">
+                    <p>Mid Cap</p>
+                </div>
+                <div>
+                    <img src="https://storage.googleapis.com/groww-assets/mf-assets/web/collection/light/high_returns.svg" alt="">
+                    <p>Small Cap</p>
+                </div>
+                <button>Explore of Mutual Funds</button>
+            </div>
+        </div>
+        <div class="info">
+            <!-- Here we should have a image and a div  -->
+            <div>
+                <h2>We are with you at every step</h2>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor accusantium eum aperiam tempora eligendi soluta?</p>
+                <button>Get in Touch</button>
+            </div>
+            <img src="https://assets-netstorage.groww.in/web-assets/billion_groww_desktop/prod/build/client/images/mfSupportImg.0379d5a2.png" alt="">
+        </div>
+    </div>
+</body>
+
+</html>
