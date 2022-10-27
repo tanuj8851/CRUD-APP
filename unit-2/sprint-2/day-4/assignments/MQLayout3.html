@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MQ Layout 3</title>
+    <style>
+        * {
+            font-size: 30px;
+            padding: 20px;
+        }
+        
+        h1 {
+            background-color: yellow;
+        }
+        
+        #box {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-areas: "one one one two";
+        }
+        
+        #box>div:nth-child(1) {
+            background-color: red;
+            grid-area: one;
+        }
+        
+        #box>div:nth-child(2) {
+            grid-area: two;
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-areas: "on" "tw" "three";
+            row-gap: 20px;
+        }
+        
+        #box>div>div {
+            background-color: greenyellow;
+            height: 100px;
+        }
+        
+        #box>div>div:nth-child(1) {
+            grid-area: on;
+        }
+        
+        #box>div>div:nth-child(2) {
+            grid-area: tw;
+        }
+        
+        #box>div>div:nth-child(3) {
+            grid-area: three;
+        }
+        
+        @media all and (min-width: 601px) and (max-width: 900px) {
+            #box {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                grid-template-areas: "one one one one" "two two two two";
+            }
+            #box>div:nth-child(2) {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-areas: "on tw three";
+                column-gap: 20px;
+                margin: auto;
+            }
+        }
+        
+        @media all and (min-width: 100px) and (max-width: 600px) {
+            #box {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                grid-template-areas: "one one one one" "two two two two";
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Navigation</h1>
+    <div id="box">
+        <div>LEFT BOX</div>
+        <div>
+            <div>RIGHT BOX 1</div>
+            <div>RIGHT BOX 2</div>
+            <div>RIGHT BOX 3</div>
+        </div>
+    </div>
+</body>
+
+</html>
