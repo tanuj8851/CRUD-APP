@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        p,
+        label {
+            font-weight: bold;
+        }
+        
+        input,
+        label {
+            margin: 20px 20px 0px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Check Your BMI</h1>
+    <p>Enter Your weight and height below to check your BMI results </p>
+
+    <label>Put your weight in here (KG)</label><br>
+    <input type="number" id="kilo" placeholder="KG"><br>
+    <label>And your height in here (CM)</label><br>
+    <input type="number" id="Cent" placeholder="CM"><br>
+    <button onclick="myfun()">Calculate BMI</button>
+    <p>Your BMI is
+        <p id="BMI"></p>
+        which means You are
+        <p id="word"></p>
+    </p>
+
+
+
+
+
+</body>
+
+</html>
+<script>
+    function myfun() {
+        let weight = document.querySelector("#kilo").value;
+        let height = document.querySelector("#Cent").value;
+
+        let BMI = (weight) / (height * height);
+        let res;
+        if (BMI <= 18.4) {
+            res = "Underweight";
+        } else if (BMI <= 18.5 && BMI <= 24.9) {
+            res = "NormalWeight";
+        } else if (BMI <= 25 && BMI <= 29.9) {
+            res = "Overweight";
+        } else if (BMI >= 30) {
+            res = "Obese";
+        }
+
+        document.querySelector("#BMI").innerText = BMI;
+        document.querySelector("#word").innerText = res;
+
+
+
+    }
+</script>
