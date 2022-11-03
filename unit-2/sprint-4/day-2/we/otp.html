@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <input type="number" placeholder="Enter Number">
+    <button onclick="checkotp()">Submit</button>
+
+</body>
+
+</html>
+<!-- User should be able to enter OTP and when clicking on submit make a new promise
+Promise should resolve if entered OTP is "1234" else reject -->
+
+<script>
+    function checkotp() {
+        let otp = document.querySelector("input").value;
+        let otpPromise = new Promise((res, rej) => {
+            if (otp == "1234") {
+                res("Otp is Correct")
+            } else {
+                rej("Otp is incorrect");
+            }
+        });
+        otpPromise.then((val) => alert(val)).catch((val) => alert(val));
+    }
+</script>

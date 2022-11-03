@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROMISE ON COUNT</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // Create a new promise in such a way that, if count is > 0 resolve it with "Positive count", else reject it with "negative count"
+
+    let count = -7;
+    let countPromise = new Promise((resolve, reject) => {
+        if (count > 0) {
+            resolve("Positive count")
+        } else {
+            reject("negative count");
+        }
+    });
+
+    countPromise.then((fromResolve) => console.log(fromResolve)).catch((fromReject) => console.log(fromReject));
+</script>
