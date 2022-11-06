@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIN & MAX LEADERBOARD (DOM)</title>
+    <style>
+        #top {
+            height: 100%;
+            width: 30%;
+            margin: auto;
+            border: 1px solid;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        #top>div {
+            text-align: center;
+            font-size: 30px;
+        }
+        
+        #top>div>div {
+            height: 100px;
+            width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #top>div:nth-child(1) div {
+            background-color: red;
+            border: 3px solid;
+        }
+        
+        #top>div:nth-child(2) div {
+            background-color: green;
+            border: 3px solid;
+        }
+        
+        #body {
+            border: 1px solid;
+            height: 100%;
+            width: 20%;
+            margin: auto;
+            text-align: center;
+            font-size: 30px;
+        }
+        
+        #display {
+            height: 60px;
+            width: 100%;
+            border: 1px solid;
+            /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+            margin: auto;
+            margin-top: 20px;
+            font-size: 50px;
+        }
+        
+        #keys {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(auto);
+            gap: 10px;
+            margin-top: 40px;
+        }
+        
+        #keys>div {
+            height: 50px;
+            width: 50px;
+            border: 1px solid;
+            padding: 10px;
+        }
+        
+        #orange {
+            background-color: orange;
+        }
+        
+        #green {
+            background-color: green;
+        }
+        
+        #purple {
+            background-color: purple;
+            color: wheat;
+        }
+        
+        #btn {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="top">
+        <div>
+            <div id="min">43</div>
+            <p>MIN</p>
+        </div>
+
+        <div>
+            <div id="max">2019</div>
+            <p>MAX</p>
+        </div>
+    </div>
+    <div id="body">
+        <p>SCORE</p>
+        <div id="display">#</div>
+
+        <div id="keys">
+            <div id="green">1</div>
+            <div id="orange">2</div>
+            <div id="green">3</div>
+            <div id="orange">4</div>
+            <div id="orange">5</div>
+            <div id="orange">6</div>
+            <div id="green">7</div>
+            <div id="orange">8</div>
+            <div id="green">9</div>
+            <div style="border: none"></div>
+            <div id="purple">0</div>
+
+        </div>
+        <div id="btn">ENTER</div>
+    </div>
+
+</body>
+
+</html>
+<script>
+    // document.querySelector("#btn").addEventListener("click", myfun);
+
+    let keys = document.querySelectorAll("#keys>div");
+    // console.log(keys)
+
+    for (let i = 0; i < keys.length; i++) {
+        keys[i].addEventListener("click", myCal);
+    }
+    let bag = "";
+    // console.log(bag);
+
+    document.querySelector("#btn").addEventListener("click", myfun);
+
+    function myfun(event) {
+        let min = document.querySelector("#min").innerText;
+        let max = document.querySelector("#max").innerText;
+        console.log(max);
+        if (bag < min) {
+            document.querySelector("#min").innerText = bag;
+            console.log(bag)
+            bag = "";
+        } else if (bag > max) {
+            document.querySelector("#max").innerText = bag;
+            console.log(bag)
+            bag = "";
+
+        }
+
+    }
+
+    function myCal(event) {
+        // console.log(event.target.innerText);
+        let Name = event.target.innerText;
+        bag += Name;
+        document.querySelector("#display").innerText = bag;
+    }
+</script>
