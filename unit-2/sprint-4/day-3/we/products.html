@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FETCH PRODUCTS</title>
+    <style>
+        #cont {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(auto);
+            gap: 20px;
+        }
+        
+        #cont>div>img {
+            width: 100%;
+        }
+        
+        #cont>div {
+            text-align: center;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            padding: 10px;
+        }
+        
+        input {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <button>Cart</button>
+    <input oninput="search()" type="text" placeholder="Search Product">
+    <div id="cont">
+
+    </div>
+
+</body>
+
+</html>
+<script>
+    let bag = [];
+    let url = "https://fakestoreapi.com/products";
+    fetch(url).then((res) => res.json())
+        .then((data) => {
+            bag = data;
+            console.log(data);
+            displayCart(data);
+        });
+
+    function search() {
+        let x = document.querySelector("input").value;
+        let newData = bag.filter(function(elem) {
+            return elem.title.toLowerCase().includes(x.toLowerCase());
+        });
+        displayCart(newData);
+    }
+
+    function displayCart(arr) {
+        arr.forEach((elem) => {
+            let div = document.createElement("div");
+
+            let image = document.createElement("img");
+            image.setAttribute("src", elem.image);
+            let title = document.createElement("h2");
+            title.innerText = elem.title;
+            let des = document.createElement("p");
+            des.innerText = elem.description;
+            let cost = document.createElement("p");
+            cost.innerText = elem.price;
+            let rating = document.createElement("p");
+            rating.innerText = elem.rating.rate;
+            let btn = document.createElement("button");
+            btn.innerText = "Add to cart";
+
+            div.append(image, title, des, cost, rating, btn);
+            document.querySelector("#cont").append(div);
+        });
+    }
+</script>
