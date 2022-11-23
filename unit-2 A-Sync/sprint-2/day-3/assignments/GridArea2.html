@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Area-2</title>
+    <style>
+        #grid {
+            height: 400px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            grid-template-areas: "one one two five" "three four two five";
+            gap: 10px;
+            padding: 20px 20px;
+        }
+        
+        #grid>div {
+            background-color: rgb(64, 63, 63);
+            color: white;
+            padding: 20px 20px;
+            border-radius: 10px;
+            font-size: 60px;
+        }
+        
+        #grid>div:nth-child(1) {
+            grid-area: one;
+        }
+        
+        #grid>div:nth-child(2) {
+            grid-area: two;
+        }
+        
+        #grid>div:nth-child(3) {
+            grid-area: three;
+        }
+        
+        #grid>div:nth-child(4) {
+            grid-area: four;
+        }
+        
+        #grid>div:nth-child(5) {
+            grid-area: five;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="grid">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+        <div>D</div>
+        <div>E</div>
+    </div>
+</body>
+
+</html>
