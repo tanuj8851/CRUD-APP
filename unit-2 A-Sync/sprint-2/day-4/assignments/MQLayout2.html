@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MQ Layout 2</title>
+    <style>
+        #nav {
+            background-color: yellow;
+            color: black;
+            font-size: 30px;
+            font-weight: bold;
+            padding: 10px;
+            margin-left: 20px;
+        }
+        
+        #box {
+            display: flex;
+            /* gap: 20px; */
+        }
+        
+        #box>div {
+            width: 45%;
+            margin: auto;
+            height: 500px;
+            padding: 10px;
+            font-size: 30px;
+            color: black;
+            margin-top: 20px;
+        }
+        
+        #box>div:nth-child(1) {
+            background-color: red;
+        }
+        
+        #box>div:nth-child(2) {
+            background-color: greenyellow;
+        }
+        
+        @media all and (min-width: 300px) and (max-width: 600px) {
+            #nav {
+                margin-left: 10px;
+            }
+            #box {
+                display: block;
+                /* gap: 20px; */
+            }
+            #box>div {
+                width: 90%;
+                margin: auto;
+                height: 120px;
+                padding: 10px;
+                font-size: 30px;
+                color: black;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="nav">Navigation</div>
+    <div id="box">
+        <div>LEFT BOX</div>
+        <div>RIGHT BOX</div>
+    </div>
+
+
+</body>
+
+</html>

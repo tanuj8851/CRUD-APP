@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRID COFFEE WITH MEDIA QUERIES</title>
+    <style>
+        #mid {
+            width: 90%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-areas: "one two three" "four five six" "seven eight nine";
+        }
+        
+        #mid>div {
+            gap: 20px;
+            /* border: 1px solid; */
+            margin: 20px;
+            padding: 10px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-radius: 5%;
+        }
+        
+        #mid>div>div {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            /* grid-template-areas: "on tw tw tw"; */
+        }
+        
+        h3 {
+            margin-left: 130px;
+            color: rgb(171, 131, 80);
+        }
+        
+        #mid>div>div:nth-child(1) {
+            grid-area: on;
+        }
+        
+        #mid>div>div:nth-child(2) {
+            grid-area: tw;
+        }
+        
+        #mid>div:nth-child(1) {
+            grid-area: one;
+        }
+        
+        #mid>div:nth-child(2) {
+            grid-area: two;
+        }
+        
+        #mid>div:nth-child(3) {
+            grid-area: three;
+        }
+        
+        #mid>div:nth-child(4) {
+            grid-area: four;
+        }
+        
+        #mid>div:nth-child(5) {
+            grid-area: five;
+        }
+        
+        #mid>div:nth-child(6) {
+            grid-area: six;
+        }
+        
+        #mid>div:nth-child(7) {
+            grid-area: seven;
+        }
+        
+        #mid>div:nth-child(8) {
+            grid-area: eight;
+        }
+        
+        #mid>div:nth-child(9) {
+            grid-area: nine;
+        }
+        
+        @media all and (min-width:601px) and (max-width: 900px) {
+            #mid {
+                width: 90%;
+                margin: auto;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(5, 1fr);
+                grid-template-areas: "one two" "three four" "five six" "seven eight" "nine nine";
+            }
+        }
+        
+        @media all and (min-width: 101px) and (max-width: 600px) {
+            #mid {
+                width: 90%;
+                margin: auto;
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                grid-template-rows: repeat(1, 1fr);
+                grid-template-areas: "one" "two" "three" "four" "five" "six" "seven" "eight" "nine ";
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mid">
+        <div>
+            <div>
+                <h2>Cappuccino</h2>
+                <h3>$49</h3>
+            </div>
+            <p>Usage of the Internet is becoming more common due to rapid advance.</p>
+        </div>
+        <div>
+            <div>
+                <h2>Americano</h2>
+                <h3>$49</h3>
+            </div>
+            <p>Usage of the Internet is becoming more common due to rapid advance.</p>
+        </div>
+        <div>
+            <div>
+                <h2>Espresso</h2>
+                <h3>$49</h3>
+            </div>
+            <p>Usage of the Internet is becoming more common due to rapid advance.</p>
+        </div>
+        <div>
+            <div>
+                <h2>Macchiato</h2>
+                <h3>$49</h3>
+            </div>
+            <p>Usage of the Internet is becoming more common due to rapid advance.</p>
+        </div>
+        <div>
+            <div>
+                <h2>Mocha</h2>
+                <h3>$49</h3>
+            </div>
+            <p>Usage of the Internet is becoming more common due to rapid advance.</p>
+        </div>
+        <div>
+            <div>
+                <h2>Coffee Latte</h2>
+                <h3>$49</h3>
+            </div>
+            <p>Usage of the Internet is becoming more common due to rapid advance.</p>
+        </div>
+        <div>
+            <div>
+                <h2>Picclo Latte</h2>
+                <h3>$49</h3>
+            </div>
+            <p>Usage of the Internet is becoming more common due to rapid advance.</p>
+        </div>
+        <div>
+            <div>
+                <h2>Ristretto</h2>
+                <h3>$49</h3>
+            </div>
+            <p>Usage of the Internet is becoming more common due to rapid advance.</p>
+        </div>
+        <div>
+            <div>
+                <h2>Affogato</h2>
+                <h3>$49</h3>
+            </div>
+            <p>Usage of the Internet is becoming more common due to rapid advance.</p>
+        </div>
+    </div>
+</body>
+
+</html>
