@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MQ Layout</title>
+    <style>
+        .cont {
+            display: grid;
+            grid-template-areas: "nav nav nav nav" "red green blue grey";
+            gap: 10px;
+        }
+        
+        .cont>div:nth-child(1) {
+            background-color: yellow;
+            grid-area: nav;
+        }
+        
+        .cont>div:nth-child(2) {
+            background-color: red;
+            grid-area: red;
+        }
+        
+        .cont>div:nth-child(3) {
+            background-color: green;
+            grid-area: green;
+        }
+        
+        .cont>div:nth-child(4) {
+            background-color: blue;
+            grid-area: blue;
+        }
+        
+        .cont>div:nth-child(5) {
+            background-color: grey;
+            grid-area: grey;
+        }
+        
+        .cont>div:nth-child(1)~div {
+            height: 100px;
+        }
+        
+        @media all and (min-width:601px) and (max-width:1000px) {
+            .cont {
+                grid-template-areas: "nav nav""red blue""green grey";
+            }
+        }
+        
+        @media all and (min-width:100px) and (max-width:599px) {
+            .cont {
+                grid-template-areas: "nav""red ""grey""green"" blue";
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cont">
+        <div>Navigation</div>
+        <div>BOX 1</div>
+        <div> BOX 2</div>
+        <div>BOX 3</div>
+        <div>BOX 4</div>
+    </div>
+</body>
+
+</html>
