@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Like and Dislike</title>
+</head>
+
+<body>
+    <h1></h1>
+    <button>Like</button>
+    <h2></h2>
+    <button id="Dis">Dislike</button>
+</body>
+
+</html>
+<script>
+    document.querySelector("button").addEventListener("click", myFun);
+    document.querySelector("#Dis").addEventListener("click", myF);
+
+    let count = localStorage.getItem("like") || 0;
+    let count1 = localStorage.getItem("Dislike") || 0;
+
+
+
+    document.querySelector("h1").innerText = count;
+    document.querySelector("h2").innerText = count1;
+
+    function myFun() {
+        count++;
+
+        document.querySelector("h1").innerText = count;
+
+
+        localStorage.setItem("like", count);
+
+    }
+
+    function myF() {
+        count1++;
+        document.querySelector("h2").innerText = count1;
+        localStorage.setItem("Dislike", count1);
+    }
+</script>
