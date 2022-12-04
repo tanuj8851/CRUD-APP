@@ -1,0 +1,16 @@
+#form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid;
+    /* padding: 20px; */
+}
+
+body {
+    display: flex;
+    border: 1px solid;
+    justify-content: space-evenly;
+}
+
+

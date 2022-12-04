@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Masai Doctor Records</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Use this form for data input  -->
+    <div id="inp">
+        <form id="form">
+            <input placeholder="Name" type="text" id="name" />
+            <input placeholder="Doctor ID" type="text" id="doctor_id" />
+            <select id="specialization">
+            <option value="">Select Specialization</option>
+            <option value="Dermatologist">Dermatologist</option>
+            <option value="Dentist">Dentist</option>
+            <option value="Gynecologist">Gynecologist</option>
+          </select>
+            <input placeholder="Experience" type="number" id="experience" />
+            <input placeholder="Email" type="email" id="email" />
+            <input placeholder="Mobile No." type="number" id="mobile" />
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+    <div id="inp-2">
+        <select id="filter">
+        <option value="">Select Specialization</option>
+        <option value="Dermatologist">Dermatologist</option>
+        <option value="Dentist">Dentist</option>
+        <option value="Gynecologist">Gynecologist</option>
+      </select>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Doctor ID</th>
+                    <th>Specialization</th>
+                    <th>Experience in Years</th>
+                    <th>Email</th>
+                    <th>Mobile No</th>
+                    <th>Role</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Append Rows here using JS & DOM  -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Use this Select tag for filter part  -->
+
+</body>
+
+<script>
+    let form = document.getElementById("form");
+    let tbody = document.querySelector("tbody");
+    let data = [];
+
+    form.addEventListener("submit", (el) => {
+        el.preventDefault();
+        let name = document.getElementById("name").value;
+        let id = document.getElementById("doctor_id").value;
+        let special = document.getElementById("specialization").value;
+        let exp = document.getElementById("experience").value;
+        let email = document.getElementById("email").value;
+        let mobile = document.getElementById("mobile").value;
+        let info = {
+            name,
+            id,
+            special,
+            exp,
+            email,
+            mobile
+        }
+        data.push(info);
+        // console.log(data)
+        tbody.innerHTML = null;
+        displayTable(data);
+    })
+
+    function displayTable(data) {
+        data.forEach((el, index) => {
+            let tr = document.createElement("tr");
+            let td1 = document.createElement("td");
+            td1.innerText = el.name;
+            let td2 = document.createElement("td");
+            td2.innerText = el.id;
+            let td3 = document.createElement("td");
+            td3.innerText = el.special;
+            let td4 = document.createElement("td");
+            td4.innerText = el.exp;
+            let td5 = document.createElement("td");
+            td5.innerText = el.email;
+            let td6 = document.createElement("td");
+            td6.innerText = el.mobile;
+            let td7 = document.createElement("td");
+            if (el.exp > 5) {
+                td7.innerText = "Senior";
+            } else if (el.exp > 2 && el.exp <= 5) {
+                td7.innerText = "Junior";
+            } else if (el.exp <= 1) {
+                td7.innerText = "Trainee";
+            }
+            let td8 = document.createElement("td");
+            td8.innerText = "delete";
+            td8.style.backgroundColor = "red";
+            td8.style.fontSize = 20;
+
+            td8.addEventListener("click", (element) => {
+                // console.log(el);
+                data.pop(el);
+                console.log(data)
+                displayTable(data)
+            })
+            tr.append(td1, td2, td3, td4, td5, td6, td7, td8);
+            tbody.append(tr);
+
+        })
+    }
+</script>
+
+</html>

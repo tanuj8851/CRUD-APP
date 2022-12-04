@@ -1,0 +1,16 @@
+#form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid;
+}
+
+body {
+    display: flex;
+}
+
+#form input,
+#form select {
+    margin: 10px 10px;
+}
