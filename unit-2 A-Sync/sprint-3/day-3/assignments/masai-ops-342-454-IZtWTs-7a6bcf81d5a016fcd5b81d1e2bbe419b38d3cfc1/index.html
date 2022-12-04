@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up Page</title>
+    <style>
+        /* Write all necessery css here  */
+    </style>
+</head>
+
+<body>
+    <button id="store-name">Store name to LS</button>
+    <button id="get-name">Get name from LS</button>
+    <h1 id="show-name">
+        <!-- Here Show the Name  -->
+    </h1>
+
+    <button id="store-mob">Store Mobile Num to LS</button>
+    <button id="get-mob">Get Mobile Number from LS</button>
+    <h1 id="show-mob">
+        <!-- Here show the mobile No  -->
+    </h1>
+
+    <button id="store-hobbies">Store Hobbies to LS</button>
+    <button id="get-hobbies">Get Hobbies from LS</button>
+    <h1 id="show-hobbies">
+        <!-- Here show the hobbies  -->
+    </h1>
+
+    <button id="store-students">Store Students to LS</button>
+    <button id="get-students">Get Students from LS</button>
+    <h1 id="show-students">
+        <!-- Here show students  -->
+    </h1>
+</body>
+<script>
+    // Write all necessery JS here
+
+    // Store Name to LS
+    let name = document.getElementById("store-name");
+    name.addEventListener("click", (el) => {
+        let data = "Masai School";
+        localStorage.setItem("username", JSON.stringify(data));
+    })
+
+    // Get Name from LS
+    let getN = document.getElementById("get-name");
+    let h1 = document.getElementById("show-name");
+    getN.addEventListener("click", (el) => {
+        let getName = JSON.parse(localStorage.getItem("username"));
+        h1.innerText = getName;
+    })
+
+
+
+
+    // Store Mobile NUm to Ls
+
+    let num = document.getElementById("store-mob");
+    num.addEventListener("click", (el) => {
+        let num = "999999999";
+        localStorage.setItem("mobile", JSON.stringify(num));
+    })
+
+    // Get Mobile From LS
+    let getNum = document.getElementById("get-mob");
+    let h2 = document.getElementById("show-mob");
+    getNum.addEventListener("click", (el) => {
+        let getNum1 = JSON.parse(localStorage.getItem("mobile"));
+        h2.innerText = getNum1;
+    })
+
+    // Part-5 Store Hobbies to LS
+    let hobby = document.getElementById("store-hobbies");
+    hobby.addEventListener("click", (el) => {
+        let hobbies = ["cricket", "music"];
+        localStorage.setItem("my_hobbies", JSON.stringify(hobbies));
+    })
+
+    // Part-6: get Hobbies from Ls
+    let getHobby = document.getElementById("get-hobbies");
+    let h3 = document.getElementById("show-hobbies");
+    getHobby.addEventListener("click", (el) => {
+        let getHobbies = JSON.parse(localStorage.getItem("my_hobbies"));
+        let x = getHobbies.join("/");
+        h3.innerText = x;
+    })
+
+    // Part-7 Store students Data to LS
+    let st = document.getElementById("store-students");
+    st.addEventListener("click", (el) => {
+        let students = [{
+            "name": "Nrupul",
+            place: "Banglore"
+        }, {
+            "name": "Prateek",
+            place: "Mumbai"
+        }]
+        localStorage.setItem("students", JSON.stringify(students));
+    })
+
+
+    // Part-8 get Students to ls
+    let getSt = document.getElementById("get-students");
+    let h4 = document.getElementById("show-students");
+    getSt.addEventListener("click", (el) => {
+        let getStu = JSON.parse(localStorage.getItem("students"));
+        let x = getStu;
+        h4.innerText = getStu;
+        // console.log(getStu)
+
+    })
+</script>
+
+</html>

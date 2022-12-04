@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in Page</title>
+</head>
+
+<body>
+    <div class="nav">
+        <a href="./index.html">Signup</a>
+        <a href="./signin.html">Signin</a>
+    </div>
+    <div id="signin">
+        <h1 id="heading">Please Enter Your Details</h1>
+        <form id="form">
+            <input type="email" id="email" />
+            <input type="password" id="password" />
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+</body>
+<script>
+    let data = JSON.parse(localStorage.getItem("account-data"));
+
+    let form = document.getElementById("form");
+    form.addEventListener("submit", (el) => {
+            // form.preventdefault();
+            let email1 = document.getElementById("email").value;
+            let pass1 = document.getElementById("password").value;
+            let head = document.getElementById("heading");
+            if (email1 == data.email && pass1 == data.pass) {
+                head.innerText = "Sign in Successful";
+                alert("Sign in Successful")
+            } else {
+                head.innerText = "Wrong Credentials";
+                alert("Wrong Credentials");
+            }
+        })
+        // console.log(data.email)
+</script>
+
+</html>
