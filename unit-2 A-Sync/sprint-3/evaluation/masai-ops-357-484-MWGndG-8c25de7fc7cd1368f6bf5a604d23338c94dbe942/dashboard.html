@@ -1,0 +1,125 @@
+<html>
+
+<head>
+    <title>Web20-C4</title>
+</head>
+
+<body>
+    <div id="navbar">
+        <h2>Masai Library</h2>
+        <div>
+            <a href="./index.html">
+                <h2>Home</h2>
+            </a>
+            <a href="./dashboard.html">
+                <h2>Dashboard</h2>
+            </a>
+            <a href="./buy.html">
+                <h2>My Books</h2>
+            </a>
+            <a href="./bookmark.html">
+                <h2>Bookmark</h2>
+            </a>
+        </div>
+    </div>
+    <select id="filter">
+    <option value="">Select Category</option>
+    <option value="Fiction">Fiction</option>
+    <option value="Self Help">Self Help</option>
+    <option value="Finance">Finance</option>
+  </select>
+    <h1>Total Books:- <span id="book-count">0</span></h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Description</th>
+                <th>Added Date</th>
+                <th>Category</th>
+                <th>Buy</th>
+                <th>Bookmark</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Append your data here  -->
+        </tbody>
+    </table>
+</body>
+
+</html>
+<script>
+    let getData = JSON.parse(localStorage.getItem("book-list"));
+    let tbody = document.querySelector("tbody");
+    let bookmark_list = JSON.parse(localStorage.getItem("bookmark-list")) || [];
+    let buy_list = JSON.parse(localStorage.getItem("buy-list")) || [];
+
+    let books = document.getElementById("book-count");
+
+    let filter = document.getElementById("filter");
+    filter.addEventListener("change", (el) => {
+        let value = filter.value;
+
+        if (value == "Fiction") {
+            getData = getData.filter((user) => user.category == "Fiction");
+            showBooks();
+
+        } else if (value == "Self Help") {
+            getData = getData.filter((user) => user.category == "Self Help");
+            showBooks();
+        } else if (value == "Finance") {
+            getData = getData.filter((user) => user.category == "finance");
+            showBooks();
+        } else {
+            showBooks();
+        }
+    })
+
+    function showBooks() {
+        books.innerText = getData.length;
+        tbody.innerHTML = "";
+        getData.forEach((el, index) => {
+
+
+            let tr = document.createElement("tr");
+            let td1 = document.createElement("td");
+            td1.innerText = el.name;
+            let td2 = document.createElement("td");
+            td2.innerText = el.author;
+            let td3 = document.createElement("td");
+            td3.innerText = el.desc;
+            let td4 = document.createElement("td");
+            td4.innerText = el.date;
+            let td5 = document.createElement("td");
+            td5.innerText = el.category;
+            let td6 = document.createElement("td");
+            td6.innerText = el.price;
+            let td7 = document.createElement("td");
+            td7.innerText = "Buy";
+            td7.style.backgroundColor = "green";
+            td7.addEventListener("click", (ele) => {
+                buy_list.push(el);
+                localStorage.setItem("buy-list", JSON.stringify(buy_list));
+                getData.splice(index, 1);
+                showBooks();
+
+            })
+            let td8 = document.createElement("td");
+            td8.innerText = "Add";
+            td8.style.backgroundColor = "red";
+            td8.addEventListener("click", (elem) => {
+                bookmark_list.push(el);
+                localStorage.setItem("bookmark-list", JSON.stringify(bookmark_list));
+                getData.splice(index, 1);
+                showBooks();
+            })
+            tr.append(td1, td2, td3, td4, td5, td6, td7, td8);
+            tbody.append(tr);
+        })
+
+
+
+    }
+    showBooks();
+</script>
