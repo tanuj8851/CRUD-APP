@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slideshow</title>
+    <style>
+        #slideshow {
+            width: 30%;
+            margin: auto;
+        }
+        
+        #slideshow div {
+            width: 100%;
+        }
+        
+        #slideshow img {
+            width: 350px;
+            height: 350px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="slideshow">
+        <div class="show">
+            <img src="https://image.tmdb.org/t/p/w220_and_h330_face/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg" alt="">
+        </div>
+        <div class="show">
+            <img src="https://images.indianexpress.com/2022/06/major-movie-review-1200.jpg" alt="">
+        </div>
+        <div class="show">
+            <img src="https://img1.hotstarext.com/image/upload/f_auto,t_web_m_1x/sources/r1/cms/prod/2607/1062607-h-fa693eabb41d" alt="">
+        </div>
+        <div class="show">
+            <img src="https://lumiere-a.akamaihd.net/v1/images/p_aladdin2019_17638_d53b09e6.jpeg" alt="">
+        </div>
+        <div class="show">
+            <img src="https://igimages.gumlet.io/hindi/gallery/movies/tubelight/tubelight_poster.jpg?w=160&dpr=2.6" alt="">
+        </div>
+    </div>
+</body>
+<script>
+    let slideIndex = 0;
+    showSlides();
+
+
+
+    setInterval(() => {
+        showSlides();
+    }, 2000);
+
+    function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("show");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+
+            slideIndex = 1
+        }
+
+        slides[slideIndex - 1].style.display = "block";
+
+    }
+</script>
+
+</html>
