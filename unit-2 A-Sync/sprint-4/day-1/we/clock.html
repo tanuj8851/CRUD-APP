@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+</head>
+
+<body>
+    <h1 id="hour">0</h1>
+    <h1 id="min">0</h1>
+    <h1 id="sec">0</h1>
+
+</body>
+
+</html>
+<script>
+    let hour = document.getElementById("hour");
+    let min = document.getElementById("min");
+    let sec = document.getElementById("sec");
+    let h = 0;
+    let m = 0;
+    let s = 0;
+    setInterval(() => {
+        s++;
+
+        if (s == 60) {
+            m++;
+
+            s = 0;
+            if (m == 60) {
+                h++;
+                hour.innerText = h;
+
+            }
+            min.innerText = m;
+        }
+        sec.innerText = s;
+    }, 1000);
+</script>
