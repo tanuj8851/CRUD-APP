@@ -1,6 +1,6 @@
 function getData(data) {
     let promise = new Promise((resolve, reject) => {
-        if (typeof(data) == string) {
+        if (typeof(data) == String) {
             reject("error");
         } else if (data % 2 == 1) {
             setTimeout((el) => {
