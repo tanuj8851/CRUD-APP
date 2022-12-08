@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #cont {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 50px
+    }
+    
+    #cont>div {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        padding: 20px;
+    }
+    
+    img {
+        height: 250px;
+        /* border: 1px solid; */
+    }
+</style>
+
+<body>
+    <div id="cont">
+
+    </div>
+
+</body>
+
+</html>
+<script>
+    let cont = document.getElementById("cont");
+    fetch("https://fakestoreapi.com/products")
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            // console.log(data);
+            displayProd(data);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+
+    function displayProd(data) {
+        data.forEach((el) => {
+            let container = document.createElement("div");
+            let image = document.createElement("img");
+            image.setAttribute("src", el.image);
+            let h1 = document.createElement("h1");
+            h1.innerText = el.title;
+            let desc = document.createElement("p");
+            desc.innerText = el.description;
+            let price = document.createElement("p");
+            price.innerText = el.price;
+
+            container.append(image, h1, desc, price);
+            cont.append(container);
+        });
+    }
+</script>
