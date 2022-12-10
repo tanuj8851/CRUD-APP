@@ -5,105 +5,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch-2</title>
-    <style>
-        #container {
-            width: 90%;
-            margin: auto;
-            margin-top: 50px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            row-gap: 20px;
-            column-gap: 30px;
-        }
-        
-        img {
-            width: 100%;
-            height: 300px;
-        }
-        
-        #container>div {
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-            padding: 10px;
-        }
-        
-        #filter {
-            padding: 10px;
-            font-size: 20px;
-        }
-        
-        button {
-            padding: 15px;
-            font-size: 25px;
-            width: 100%;
-            border: 0ch;
-            background-color: red;
-            color: white;
-        }
-        
-        button:hover {
-            cursor: pointer;
-        }
-        
-        @media screen and (min-width:100px) and (max-width:450px) {
-            #container {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media screen and (min-width:451px) and (max-width:900px) {
-            #container {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-    </style>
+    <title>Todos App</title>
+    <link rel="stylesheet" href="todos.css">
 </head>
 
 <body>
-    <select id="filter">
-        <option value="">Select the Category</option>
-        <option value="men's clothing">men's clothing</option>
-        <option value="women's clothing">women's clothing</option>
-        <option value="jewelery">jewelery</option>
-        <option value="electronics">electronics</option>
-        
-    </select>
-    <a href="addtocart.html">Add to Cart</a>
-    <div id="container"></div>
+    <table>
+        <!-- Dont change order of columns -->
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            <!-- Append your output to tbody -->
+        </tbody>
+    </table>
 </body>
 
+</html>
 <script>
-    let container = document.getElementById("container");
-    let filterSelect = document.getElementById("filter");
+    let tbody = document.getElementById("tbody");
     let fetchedData = [];
-
     fetchData();
-    let getdata = JSON.parse(localStorage.getItem("Products")) || [];
-
-    filterSelect.addEventListener("change", function() {
-
-        let filteredData = fetchedData.filter((element) => {
-            if (element.category === filterSelect.value) {
-                return true;
-            } else {
-                return false;
-            }
-        })
-        console.log(filteredData);
-        displayCountries(filteredData);
-    })
 
     function fetchData() {
-        let promise = fetch("https://fakestoreapi.com/products")
+        let promise = fetch("https://jsonplaceholder.typicode.com/todos")
         promise.then((responseObject) => {
                 return responseObject.json();
             })
             .then((data) => {
                 console.log(data)
                 fetchedData = data;
-                displayCountries(data);
+                displayTable(data);
 
 
             })
@@ -116,43 +52,28 @@
 
     }
 
-    function displayCountries(data) {
-        container.innerHTML = null;
+    function displayTable(data) {
+        tbody.innerHTML = null;
         data.forEach((element) => {
-            let card = document.createElement("div");
-            card.setAttribute("class", "card");
-            let flag = document.createElement("img");
-            flag.setAttribute("src", element.image);
+            let tr = document.createElement("tr");
 
-            let title = document.createElement("h2");
+            let Id = document.createElement("td");
+            Id.innerText = element.id;
+
+            let title = document.createElement("td");
             title.innerText = element.title;
 
-            let category = document.createElement("h4");
-            category.innerText = element.category;
-            let price = document.createElement("p");
-            price.innerText = "Price:- $" +
-                element.price;
-            let add = document.createElement("button");
-            add.innerText = "Add to Cart";
+
+            let status = document.createElement("td");
+            status.innerText = element.completed;
 
 
-            add.addEventListener("click", (el) => {
-
-                let dataset = {
-                    image: element.image,
-                    title: element.title,
-                    category: element.category,
-                    price: element.price
-                }
-                getdata.push(dataset);
-                localStorage.setItem("prod_list", JSON.stringify(getdata));
-            });
 
 
-            card.append(flag, title, category, price, add);
-            container.append(card);
+
+
+            tr.append(Id, title, status)
+            tbody.append(tr);
         });
     }
 </script>
-
-</html>
