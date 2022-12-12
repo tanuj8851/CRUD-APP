@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Favourites Page</title>
+    <style>
+        /* All Your css for Favourites page goes here  */
+        
+        body {
+            width: 90%;
+            margin: auto;
+        }
+        
+        #fav-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        #fav-container>div {
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            padding: 10px;
+        }
+        
+        button {
+            background-color: red;
+            color: white;
+            border: 0px;
+        }
+        
+        img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <h1>Masai Restaurant Finder</h1>
+        <a href="./index.html">Home</a>
+        <a href="./favourites.html">Favourites</a>
+    </div>
+    <h1 id="total">Your a total <span id="fav-total">0</span> elements in the favourites</h1>
+    <div id="fav-container">
+        <!-- Here Append All the Favourites-->
+    </div>
+</body>
+<script>
+    // All your JS code for Favourites Page goes here
+    let container = document.getElementById("fav-container");
+    let getFav = JSON.parse(localStorage.getItem("favourites"));
+    let total = document.getElementById("fav-total");
+    let count = 1;
+    displayData(getFav)
+
+
+    function displayData(data) {
+
+        container.innerHTML = null;
+        data.forEach((elem, index) => {
+            total.innerText = data.length;
+            let pack = document.createElement("div");
+            let image = document.createElement("img");
+            image.setAttribute("src", elem.image)
+            let name = document.createElement("h1");
+            name.innerText = elem.name;
+            let price = document.createElement("h4");
+            price.innerText = elem.price_starts_from;
+            let type = document.createElement("p");
+            type.innerText = elem.type;
+            let rating = document.createElement("p");
+            rating.innerText = elem.rating;
+            let deleted = document.createElement("button");
+            deleted.innerText = "Delete";
+
+
+            deleted.addEventListener("click", (el, i) => {
+
+                data.splice(index, 1);
+                count--;
+                localStorage.setItem("favourites", JSON.stringify(data));
+                displayData(data)
+
+            })
+
+            pack.append(image, name, price, type, rating, deleted)
+            container.append(pack);
+        });
+    }
+</script>
+
+</html>

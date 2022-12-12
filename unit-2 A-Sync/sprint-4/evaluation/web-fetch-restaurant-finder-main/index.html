@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <style>
+        /* All Your css for Home page goes here  */
+        
+        body {
+            width: 90%;
+            margin: auto;
+        }
+        
+        #restaurant-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        #restaurant-container>div {
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            padding: 10px;
+        }
+        
+        img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <h1>Masai Restaurant Finder</h1>
+        <a href="./index.html">Home</a>
+        <a href="./favourites.html">Favourites</a>
+    </div>
+    <select id="filter">
+      <option value="">Filter By Category</option>
+      <option value="cafe">cafe</option>
+      <option value="ethnic">ethnic</option>
+      <option value="fast_food">fast_food</option>
+    </select>
+    <h1 id="alert"></h1>
+    <div id="restaurant-container">
+        <!-- Here Append All the Products  -->
+    </div>
+</body>
+<script>
+    const url = `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/getrestaurants?limit=30`;
+    // All your JS code for Home Page goes here
+    let container = document.getElementById("restaurant-container");
+    let filtery = document.getElementById("filter");
+    let fetchedData = [];
+
+    filter.addEventListener("change", () => {
+        // console.log(fetchedData)
+        let filteredData = fetchedData.filter((el) => {
+                if (el.type === filtery.value) {
+                    return true;
+                } else {
+                    return false;
+                }
+            })
+            // console.log(filteredData)
+        displayData(filteredData)
+    })
+
+
+
+
+
+
+    fetch(url).then((responseObj) => {
+            return responseObj.json();
+
+        })
+        .then((actualData) => {
+            console.log(actualData.data)
+            fetchedData = actualData.data;
+            displayData(actualData.data)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+
+
+
+
+    function displayData(data) {
+
+        container.innerHTML = null;
+        data.forEach((elem, index) => {
+            let pack = document.createElement("div");
+            let image = document.createElement("img");
+            image.setAttribute("src", elem.image)
+            let name = document.createElement("h1");
+            name.innerText = elem.name;
+            let price = document.createElement("h4");
+            price.innerText = elem.price_starts_from;
+            let type = document.createElement("p");
+            type.innerText = elem.type;
+            let rating = document.createElement("p");
+            rating.innerText = elem.rating;
+            let favourites = document.createElement("button");
+            favourites.innerText = "Favourites";
+
+            favourites.addEventListener("click", (el) => {
+                let favData = JSON.parse(localStorage.getItem("favourites")) || [];
+                let check = false;
+                for (let i = 0; i < favData.length; i++) {
+                    if (favData[i].id == elem.id) {
+                        check = true;
+                        break;
+                    }
+                }
+                if (check == true) {
+                    alert("Restaurant Already in Favourites");
+                } else {
+                    favData.push(elem);
+                    localStorage.setItem("favourites", JSON.stringify(favData));
+                    alert("Restaurant Added To Favourites");
+                }
+
+            })
+
+            pack.append(image, name, price, type, rating, favourites)
+            container.append(pack);
+        });
+    }
+</script>
+
+</html>
