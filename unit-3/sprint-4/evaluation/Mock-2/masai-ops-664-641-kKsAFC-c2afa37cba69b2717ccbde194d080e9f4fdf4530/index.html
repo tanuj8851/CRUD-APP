@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <style>
+        /* All Your css for Home page goes here  */
+        
+        #menu-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            column-gap: 1cm;
+            row-gap: 1cm;
+        }
+        
+        .card {
+            /* border: 1px solid; */
+            padding: 16px;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+        
+        .card img {
+            height: 7cm;
+            width: 100%;
+        }
+        
+        .card button {
+            background-color: rgb(31, 137, 180);
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <h1>Web Coffee Shop Menu</h1>
+        <a href="./index.html">Home</a>
+        <a href="./order.html">Ordered</a>
+    </div>
+    <div id="filter">
+        <input type="number" id="lower" />
+        <input type="number" id="upper" />
+        <button id="filter-btn">Filter</button>
+    </div>
+    <select id="sort">
+      <option value="">Sort By Price</option>
+      <option value="asc">Ascending</option>
+      <option value="desc">Descending</option>
+    </select>
+    <h1 id="alert"></h1>
+    <div id="menu-container">
+        <!-- Here Append All the Items  -->
+    </div>
+</body>
+<script>
+    // All your JS code for Home Page goes here
+    let url = `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-coffee`;
+    let linkDesc = `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-coffee?sort=price&order=desc`;
+    let linkAsce = `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-coffee?sort=price&order=asc`
+    let menu = document.getElementById("menu-container");
+    let filterBtn = document.getElementById("filter-btn");
+    let minPrice = document.getElementById("lower").value;
+    let maxPrice = document.getElementById("upper").value;
+    let sortData = document.getElementById("sort");
+    // let buybtn = document.getElementsById("card-btn")
+    // console.log(sortData.value)
+    let coffeedata = [];
+    fetchData(url)
+
+    function fetchData(url) {
+        fetch(url)
+            .then((res) => res.json())
+            .then(data => {
+                let coffee = data.data;
+                // console.log(coffee);
+                // menu.innerHTML=
+
+                coffee.forEach(el => {
+                    // coffeedata.push(el)
+                    let original = {
+                        image: el.image,
+                        desc: el.description,
+                        title: el.title,
+                        id: el.id,
+                        price: el.price,
+                        ingredients: el.ingredients
+                    }
+                    coffeedata.push(original)
+
+
+                })
+                displayData(coffee)
+
+
+            })
+    }
+
+
+
+    sort.addEventListener("change", function() {
+
+        if (sortData.value == "asc") {
+            console.log(linkAsce)
+            link = linkAsce
+
+
+
+        } else if (sortData.value == "desc") {
+            console.log(linkDesc)
+            link = linkDesc
+
+
+
+        }
+        fetchData(link)
+    });
+
+
+
+
+
+    filterBtn.addEventListener("click", function() {
+
+
+
+            coffee.forEach(e => {
+                if (e.price >= minPrice && e.price <= maxPrice) {
+                    // document.getElementById(e.id).style.display = "block";
+                    // console.log(e)
+                    displayData(e)
+
+
+                } else {
+                    // document.getElementById(e.id).style.display = "none";
+                    // console.log(e)
+                }
+            })
+
+
+
+        })
+        // console.log(coffeedata)
+
+
+
+
+
+
+    function displayData(data) {
+        data.forEach(e => {
+            let card = document.createElement("div");
+            card.classList.add("card");
+
+            card.innerHTML =
+                `
+                    <img src=${e.image} alt="">
+                    <h3>${e.title}</h3>
+                    <p>${e.ingredients}</p>
+                    <p>${e.description}</p>
+                    <p>${e.price}</p>
+                    <button id="card-btn">Buy</button>
+                `
+            menu.append(card);
+        })
+    }
+</script>
+
+</html>
