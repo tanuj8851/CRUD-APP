@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Web Movie App</title>
+    <style>
+        /* Write necessery styles here  */
+    </style>
+</head>
+
+<body>
+    <div id="serach">
+        <input type="text" id="search-inp" placeholder="Search" />
+        <button id="search-btn">Search</button>
+    </div>
+    <div id="movie_container"></div>
+</body>
+
+<script>
+    // Write necessery JS here
+    let btn = document.getElementById("search-btn");
+    let box = document.getElementById("movie_container");
+    let input = document.getElementById("search-inp");
+    load();
+    displayProd();
+    btn.addEventListener("click", (el) => {
+
+        load(input.value);
+
+
+
+
+
+    })
+
+
+
+    function displayProd(data) {
+        data.forEach((elem) => {
+            let container = document.createElement("div");
+            let title = document.createElement("h2");
+            title.innerText = elem.Title;
+            let poster = document.createElement("img");
+            poster.setAttribute("src", elem.Poster);
+            container.append(poster, title);
+            box.append(container);
+        });
+
+
+
+    }
+
+    function load(search) {
+
+        fetch("https://www.omdbapi.com/?apiKey=aacce48d&s=avengers")
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                console.log(data)
+                displayProd(data)
+            })
+            .catch((err) => {
+                console.error(err);
+            })
+    }
+</script>
+
+</html>

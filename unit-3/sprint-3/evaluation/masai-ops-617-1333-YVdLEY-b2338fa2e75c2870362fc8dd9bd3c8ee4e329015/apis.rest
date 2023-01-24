@@ -1,6 +1,17 @@
 ### GET all recipes
 GET http://localhost:9090/recipeIngredients?_limit=10&_page=1
 
+### 
+GET http://localhost:8080/images/cat/cat-unsplash-25.jpg
+
+### 
+
+GET http://127.0.0.1:9090/recipes
+
+
+###
+GET http://127.0.0.1:9090/employees
+
 
 ### GET all employees
 GET http://localhost:9090/employees

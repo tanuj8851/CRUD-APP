@@ -58,9 +58,9 @@
 </body>
 <script>
     // All your JS code for Home Page goes here
-    let url = `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-coffee`;
-    let linkDesc = `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-coffee?sort=price&order=desc`;
-    let linkAsce = `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-coffee?sort=price&order=asc`
+    let url = `https://63c7a5645c0760f69abb1675.mockapi.io/products`;
+    let linkDesc = `https://63c7a5645c0760f69abb1675.mockapi.io/products?sortBy=price&order=desc`;
+    let linkAsce = `https://63c7a5645c0760f69abb1675.mockapi.io/products?sortBy=price&order=asc`;
     let menu = document.getElementById("menu-container");
     let filterBtn = document.getElementById("filter-btn");
     let minPrice = document.getElementById("lower").value;
@@ -69,30 +69,46 @@
     // let buybtn = document.getElementsById("card-btn")
     // console.log(sortData.value)
     let coffeedata = [];
-    fetchData(url)
+
+    window.addEventListener("load", () => {
+        Datafetch(url)
+    })
+
+    function Datafetch(url) {
+        fetch(url)
+            .then((res) => res.json())
+            .then(data => {
+                let coffee = data;
+                // console.log(coffee)
+                coffeedata = coffee
+                   
+                displayData(coffee)
+
+
+            })
+    }
 
     function fetchData(url) {
         fetch(url)
             .then((res) => res.json())
             .then(data => {
                 let coffee = data.data;
-                // console.log(coffee);
-                // menu.innerHTML=
+                // console.log(coffee)
+                coffeedata = coffee
+                    // coffee.forEach(el => {
+                    //     // coffeedata.push(el)
+                    //     let original = {
+                    //         image: el.image,
+                    //         desc: el.description,
+                    //         title: el.title,
+                    //         id: el.id,
+                    //         price: el.price,
+                    //         ingredients: el.ingredients
+                    //     }
+                    //     coffeedata.push(original)
 
-                coffee.forEach(el => {
-                    // coffeedata.push(el)
-                    let original = {
-                        image: el.image,
-                        desc: el.description,
-                        title: el.title,
-                        id: el.id,
-                        price: el.price,
-                        ingredients: el.ingredients
-                    }
-                    coffeedata.push(original)
 
-
-                })
+                // })
                 displayData(coffee)
 
 
@@ -100,50 +116,51 @@
     }
 
 
+    console.log(coffeedata)
+    filterBtn.addEventListener("click", function() {
+
+
+        let filteredData = coffeedata.filter(el => {
+            return el.price >= minPrice && el.price <= maxPrice;
+        })
+        console.log(filteredData)
+
+
+
+
+    })
 
     sort.addEventListener("change", function() {
 
         if (sortData.value == "asc") {
+            // link = linkAsce
             console.log(linkAsce)
-            link = linkAsce
+                // fetchData(linkAsce)
+            Datafetch(linkAsce)
 
 
 
         } else if (sortData.value == "desc") {
-            console.log(linkDesc)
             link = linkDesc
+            console.log(linkDesc)
+                // fetchData(linkDesc)
+            Datafetch(linkDesc)
 
 
 
+        } else {
+            Datafetch(url)
         }
-        fetchData(link)
+
+
     });
 
 
 
 
 
-    filterBtn.addEventListener("click", function() {
 
 
-
-            coffee.forEach(e => {
-                if (e.price >= minPrice && e.price <= maxPrice) {
-                    // document.getElementById(e.id).style.display = "block";
-                    // console.log(e)
-                    displayData(e)
-
-
-                } else {
-                    // document.getElementById(e.id).style.display = "none";
-                    // console.log(e)
-                }
-            })
-
-
-
-        })
-        // console.log(coffeedata)
 
 
 
@@ -151,6 +168,7 @@
 
 
     function displayData(data) {
+        menu.innerHTML = null;
         data.forEach(e => {
             let card = document.createElement("div");
             card.classList.add("card");

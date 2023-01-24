@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <style>
+
+    </style>
+    <link rel="stylesheet" href="register.css">
+
+</head>
+
+<body>
+    <div class="box">
+        <div class="form-box">
+            <h1>Registration Form</h1>
+            <form id="registration-form">
+                <label for="unique-id">Unique ID:</label>
+                <input type="text" id="unique-id" name="unique-id" required>
+                <br>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" minlength="4" required>
+                <br>
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="18" max="40" required>
+                <br>
+                <label for="designation">Designation:</label>
+                <input type="radio" id="employee" name="designation" value="employee" required>
+                <label for="employee">Employee</label>
+                <input type="radio" id="student" name="designation" value="student" required>
+                <label for="student">Student</label>
+                <br>
+                <label for="priority">Priority:</label>
+                <select id="priority" name="priority" required>
+                    <option value="p0">p0</option>
+                    <option value="p1">p1</option>
+                    <option value="p2">p2</option>
+                    <option value="p3">p3</option>
+                </select>
+                <br>
+                <label for="vaccine">Vaccine:</label>
+                <select id="vaccine" name="vaccine" required>
+                    <option value="covishield">Covishield</option>
+                    <option value="covaxin">Covaxin</option>
+                    <option value="sputnik">Sputnik</option>
+                </select>
+                <br>
+                <input type="submit" value="Register">
+            </form>
+
+        </div>
+    </div>
+</body>
+<script src="register.js"></script>
+
+</html>

@@ -20,23 +20,23 @@ let linkdata = `${baseServerURL}`
 let catsData = [];
 
 window.addEventListener("load", () => {
-    getData("cats")
+    fetchData("cats")
 })
 
 fetchRecipesBtn.addEventListener("click", () => {
-    getData("recipes");
+    fetchData("recipes");
 })
 fetchEmployeesBtn.addEventListener("click", () => {
-    getData("employees")
+    fetchData("employees")
 })
 sortAtoZBtn.addEventListener("click", () => {
     catsData.sort((a, b) => {
-        return b - a
+        return a.cost - b.cost
     })
 })
 sortZtoABtn.addEventListener("click", () => {
     catsData.sort((a, b) => {
-        return b - a
+        return b.cost - a.cost
     })
 })
 filterLessThan50Btn.addEventListener("click", () => {
@@ -47,38 +47,28 @@ filterMoreThanEqual50Btn.addEventListener("click", () => {
 })
 
 
-
-
-
-function getData(input) {
+function fetchData(input) {
     fetch(`${baseServerURL}/${input}`)
-        .then((res) => {
-            // console.log(res)
-            return res.json()
-                // console.log(res)
-
-        })
+        .then(res => res.json())
         .then((data) => {
             console.log(data)
-
-            mainSection.innerHTML =
-
-                `
-<pre>
-${JSON.stringify(data,null,2)}
-</pre>
-`
+            catsData = data;
+            displaydata(catsData)
         })
-
 }
 
-
-
-
-
-
-{
-    /* <pre>
-    ${JSON.stringify(catsData,null,2)}
-    </pre> */
+function displaydata(data) {
+    mainSection.innerHTML = null;
+    data.forEach(el => {
+        let card = document.createElement("div")
+        card.className = "Card";
+        card.innerHTML =
+            `
+        <img src=${el.image} alt="">
+        <p>${el.name}</p>
+        <p>${el.description.substring(0,75)}</p>
+        <p>${el.cost}</p>        
+        `
+        mainSection.append(card)
+    });
 }
