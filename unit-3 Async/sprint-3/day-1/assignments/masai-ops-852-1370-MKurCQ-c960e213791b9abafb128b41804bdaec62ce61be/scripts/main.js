@@ -79,6 +79,26 @@ window.addEventListener("load", () => {
     fetchAndRenderEmployees();
 });
 
+getTodoButton.addEventListener("click", async() => {
+    try {
+        let res = await fetch(urlTodosBase, {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json",
+                "Authorization": `Bearer ${userAuthToken}`
+            }
+        })
+        let data = await res.json();
+        console.log(data)
+
+        renderCardList(data)
+            // displaydata(data)
+
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 sortAtoZBtn.addEventListener("click", () => {
     let sortedData = employeesData.sort((a, b) => {
         return a.salary - b.salary;
@@ -135,7 +155,7 @@ loginUserButton.addEventListener("click", async function() {
     let password = loginUserPassword.value;
     console.log(userName, password)
     loginUser(userName, password)
-    alert("Login Successful")
+
 });
 
 registerUserButton.addEventListener("click", function() {
@@ -182,6 +202,37 @@ function renderCardList(cardData) {
     //   });
     // }
 }
+
+function renderCard(cardData) {
+    let cardList = `
+    <div class="card-list">
+      ${cardData
+        .map((item) =>
+          getCard(
+            item.id,
+            item.title,
+            item.completed,
+           
+           
+          )
+        )
+        .join("")}
+    </div>
+  `;
+
+    mainSection.innerHTML = cardList;
+
+    // let editLinks = document.querySelectorAll(".card__link");
+    // for (let editLink of editLinks) {
+    //   editLink.addEventListener("click", (e) => {
+    //     e.preventDefault();
+    //     let currentId = e.target.dataset.id;
+    //     populateEditForms(currentId);
+    //   });
+    // }
+}
+
+
 
 function getCard(id, name, depart, salary, imageUrl) {
     let card = `
@@ -277,20 +328,34 @@ function registerUser(username, firstname, lastname, email, password, image, dep
     })
 }
 
-function loginUser(userName, password) {
-    fetch(userLoginURL, {
-            method: "POST",
-            body: JSON.stringify({
-                userName: userName,
-                password: password
-            }),
-            headers: {
-                'content-type': 'application/json'
-            }
+
+
+function loginUser(username, password) {
+    let data = {
+        username: username,
+        password: password
+    }
+
+    let options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': "application/json",
+        },
+        body: JSON.stringify(data)
+    }
+
+    fetch(userLoginURL, options)
+        .then((res) => {
+            console.log(res)
+            return res.json();
+        }).then((data) => {
+            console.log(data)
+            localStorage.setItem("localAccessToken", data.accessToken);
+            localStorage.setItem("userId", data.user.id);
+            alert("Login Successful")
+
+
 
         })
-        .then((res) =>
-            res.json())
-        .then((data) => console.log(data))
-        .catch(err => console.log(err))
+
 }
