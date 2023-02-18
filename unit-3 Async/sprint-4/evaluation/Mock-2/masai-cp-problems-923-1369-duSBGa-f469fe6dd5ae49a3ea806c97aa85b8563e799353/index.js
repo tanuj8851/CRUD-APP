@@ -12,10 +12,10 @@ brandfilter.addEventListener("change", (e) => {
     if (Target.checked) {
         console.log(Target.id)
         let filteredData = fetchedData.filter((item) => {
-            return Target.id == item.brand;
+                return Target.id == item.brand;
 
-        })
-        console.log(filteredData)
+            })
+            // console.log(filteredData)
         displayData(filteredData)
     } else {
         displayData(fetchedData)
@@ -27,10 +27,10 @@ categoryFilter.addEventListener("change", (e) => {
     if (Target.checked) {
         console.log(Target.id)
         let filteredData = fetchedData.filter((item) => {
-            return Target.id == item.category;
+                return Target.id == item.category;
 
-        })
-        console.log(filteredData)
+            })
+            // console.log(filteredData)
         displayData(filteredData)
     } else {
         displayData(fetchedData)
@@ -54,7 +54,7 @@ function fetchData() {
         .then((data) => {
 
             fetchedData = data.data;
-            console.log(fetchedData)
+            // console.log(fetchedData)
             displayData(fetchedData)
         })
 }

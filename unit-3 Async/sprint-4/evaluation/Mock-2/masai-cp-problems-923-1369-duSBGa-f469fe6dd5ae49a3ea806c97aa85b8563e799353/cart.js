@@ -12,7 +12,7 @@ window.addEventListener("load", () => {
 
 
 function fetchData() {
-    console.log(getData.length)
+    // console.log(getData.length)
     if (getData.length > 0) {
         getData.map((el) => {
             fechingData(el)
@@ -28,7 +28,7 @@ function fechingData(id) {
         .then((data) => {
             // console.log(data.data)
             let fetchedData = data.data;
-            console.log(fetchedData)
+            // console.log(fetchedData)
             displayData(fetchedData)
         })
 }
