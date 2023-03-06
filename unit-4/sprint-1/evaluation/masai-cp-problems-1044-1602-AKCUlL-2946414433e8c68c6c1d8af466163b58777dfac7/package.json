@@ -1,0 +1,21 @@
+{
+  "name": "e1",
+  "version": "1.0.0",
+  "description": "### Maximum Marks - 10 ``` ✅ able to submit the application - 1 mark (minimum score) ✅ should able to perform the oprations for \"/\" route - 1 mark ✅ should able to write initial count and time stamp in the logs.txt file on hitting \"/count\" route - 1 mark ✅ should able to send approprite response in \"/count\" route- 1 marks ✅ should able to update the new user in \"data.json\" file on hitting \"/update\" route - 1 mark ✅ should able to append the updtaed number of users along with time stamp in \"logs.txt\" on hitting \"/update\" route - 1 mark ✅ should able to get all the users in unordered list form on hitting \"/users\" - 1 mark ✅ should able to get IP address and family on hitting \"/address\" route - 1 mark ✅ should able to append it in \"logs.txt\" on hitting \"/address\" route  - 1 mark ✅ should able to get the desired response ypon hitting \"/say\" route- 1 marks ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest app.test.js",
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.3.1"
+  },
+  "dependencies": {
+    "cowsay": "^1.5.0",
+    "express": "^4.18.2",
+    "supertest": "^6.3.3"
+  }
+}
