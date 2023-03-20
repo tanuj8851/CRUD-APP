@@ -56,7 +56,7 @@ userRouter.patch("/update/:movieId", async(req, res) => {
 })
 
 
-userRouter.delete("/delete/:movieId", async(req, res) => {
+userRouter.delete("/delete:userId", async(req, res) => {
     const { userId } = req.params;
     const data = req.body
 

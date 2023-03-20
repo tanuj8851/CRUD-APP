@@ -13,9 +13,7 @@ const connection = async() => {
     console.log("DB connected");
 }
 
-app.get("/datas", (req, res) => {
-    res.send("Home Page", res);
-})
+
 
 
 
