@@ -18,16 +18,7 @@ userRouter.post("/add", async(req, res) => {
 
 
 
-userRouter.get("/:userId", async(req, res) => {
-    const { userId } = req.params
 
-    try {
-        const data = await userModel.find({ _id: userId })
-        res.send(data).status(200)
-    } catch (error) {
-        res.send({ "msg": error.messege }).status(400)
-    }
-})
 
 
 
@@ -42,8 +33,18 @@ userRouter.get("/data", async(req, res) => {
     }
 })
 
+userRouter.get("/:userId", async(req, res) => {
+    const { userId } = req.params
 
-userRouter.patch("/update/:movieId", async(req, res) => {
+    try {
+        const data = await userModel.find({ _id: userId })
+        res.send(data).status(200)
+    } catch (error) {
+        res.send({ "msg": error.messege }).status(400)
+    }
+})
+
+userRouter.patch("/update/:userId", async(req, res) => {
     const { userId } = req.params;
     const data = req.body
 
@@ -56,7 +57,7 @@ userRouter.patch("/update/:movieId", async(req, res) => {
 })
 
 
-userRouter.delete("/delete:userId", async(req, res) => {
+userRouter.delete("/delete/:userId", async(req, res) => {
     const { userId } = req.params;
     const data = req.body
 
