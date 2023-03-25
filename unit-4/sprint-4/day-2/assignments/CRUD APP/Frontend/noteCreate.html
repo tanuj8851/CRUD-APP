@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Signup Page</title>
+    <style>
+        #form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+            font-family: Arial, sans-serif;
+        }
+        
+        input[type=text],
+        input[type=text],
+        input[type=text] {
+            padding: 10px;
+            margin: 10px;
+            width: 300px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            margin: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #3e8e41;
+            cursor: pointer;
+        }
+        
+        #btns {
+            display: flex;
+            justify-content: space-evenly;
+        }
+        
+        #title-logo {
+            display: flex;
+            justify-content: center;
+            font-size: 30px;
+        }
+        
+        #title-logo h1 {
+            color: #3e8e41;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="btns">
+        <a href="signup.html"><button>SignUp PAGE</button></a>
+        <a href="login.html"><button>Login PAGE</button></a>
+        <a href="notes.html"><button>Show Notes</button></a>
+    </div>
+
+    <div id="title-logo">
+        <h1>ADD Notes Here</h1>
+    </div>
+    <div id="form">
+
+
+
+
+        <label for="Enter Title">Enter Title</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="Enter Body">Enter Body</label>
+        <input type="text" id="body" name="body" required>
+
+        <button onclick=onAdd()>Add Note</button></div>
+
+
+</body>
+
+</html>
+
+<script>
+    let url = "http://localhost:9000";
+    // let title = document.getElementById("hello").value
+    // console.log("see->", title)
+
+    let token = localStorage.getItem("token")
+
+
+    const onAdd = () => {
+
+        const data = {
+                title: document.getElementById("title").value,
+                body: document.getElementById("body").value
+            }
+            // console.log(data)
+
+        fetch(`${url}/notes/create`, {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json",
+                    "authorization": token
+                },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(data => {
+
+                console.log(data)
+            })
+            .catch(err => console.log(err))
+    }
+</script>

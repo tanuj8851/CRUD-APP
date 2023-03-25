@@ -29,9 +29,10 @@ noteRouter.delete("/delete/:id", async(req, res) => {
 
 noteRouter.patch("/update/:id", async(req, res) => {
     const noteId = req.params.id;
+    const payload = req.body;
     try {
-        const note = await noteModel.findByIdAndUpdate({ _id: noteId });
-        // note.save()
+        const note = await noteModel.updateOne({ _id: noteId }, { $set: payload });
+
         console.log(note)
         res.send({ "msg": `Note updated by Id ${noteId}` });
     } catch (error) {

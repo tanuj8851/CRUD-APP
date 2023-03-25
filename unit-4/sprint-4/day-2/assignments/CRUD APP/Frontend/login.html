@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Signup Page</title>
+    <style>
+        #form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+            font-family: Arial, sans-serif;
+        }
+        
+        input[type=text],
+        input[type=email],
+        input[type=password] {
+            padding: 10px;
+            margin: 10px;
+            width: 300px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            margin: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #3e8e41;
+            cursor: pointer;
+        }
+        
+        #btns {
+            display: flex;
+            justify-content: space-evenly;
+        }
+        
+        #title {
+            display: flex;
+            justify-content: center;
+            font-size: 30px;
+        }
+        
+        #title h1 {
+            color: #3e8e41;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="btns">
+        <a href="signup.html"><button>SignUp</button></a>
+        <a href="noteCreate.html"><button>Create Notes</button></a>
+        <a href="notes.html"><button>Show Notes</button></a>
+    </div>
+
+    <div id="title">
+        <h1>Login Page</h1>
+    </div>
+    <div id="form">
+
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button onclick=login()>Login</button></div>
+
+
+</body>
+
+</html>
+
+<script>
+    let url = "http://localhost:9000";
+    const login = () => {
+
+        const data = {
+            email: document.getElementById("email").value,
+            pass: document.getElementById("password").value
+        }
+
+        // console.log(data)
+
+        fetch(`${url}/user/login`, {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(data => {
+
+                console.log(data)
+                localStorage.setItem("token", data.token)
+            })
+            .catch(err => console.log(err))
+    }
+</script>
