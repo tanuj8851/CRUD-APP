@@ -83,7 +83,7 @@
 </html>
 
 <script>
-    let url = "http://localhost:9000";
+    let url = "https://drab-red-nightingale-cape.cyclic.app/";
     const SignUp = () => {
 
         const data = {
@@ -102,7 +102,10 @@
                 body: JSON.stringify(data)
             })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                console.log(data)
+                alert("New user Has been registered")
+            })
             .catch(err => console.log(err))
     }
 </script>

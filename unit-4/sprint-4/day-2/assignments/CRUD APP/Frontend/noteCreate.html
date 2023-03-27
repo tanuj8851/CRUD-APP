@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Signup Page</title>
+    <title>Create Notes Page</title>
     <style>
         #form {
             display: flex;
@@ -59,7 +59,7 @@
 <body>
 
     <div id="btns">
-        <a href="signup.html"><button>SignUp PAGE</button></a>
+        <a href="index.html"><button>SignUp PAGE</button></a>
         <a href="login.html"><button>Login PAGE</button></a>
         <a href="notes.html"><button>Show Notes</button></a>
     </div>
@@ -86,9 +86,8 @@
 </html>
 
 <script>
-    let url = "http://localhost:9000";
-    // let title = document.getElementById("hello").value
-    // console.log("see->", title)
+    let url = "https://drab-red-nightingale-cape.cyclic.app/";
+
 
     let token = localStorage.getItem("token")
 
@@ -96,10 +95,10 @@
     const onAdd = () => {
 
         const data = {
-                title: document.getElementById("title").value,
-                body: document.getElementById("body").value
-            }
-            // console.log(data)
+            title: document.getElementById("title").value,
+            body: document.getElementById("body").value
+        }
+
 
         fetch(`${url}/notes/create`, {
                 method: "POST",

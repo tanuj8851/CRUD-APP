@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Signup Page</title>
+    <title>Notes Page</title>
     <style>
         #form {
             display: flex;
@@ -97,7 +97,7 @@
 <body>
 
     <div id="btns">
-        <a href="signup.html"><button>SignUp PAGE</button></a>
+        <a href="index.html"><button>SignUp PAGE</button></a>
         <a href="login.html"><button>Login PAGE</button></a>
         <a href="noteCreate.html"><button>Create New Notes</button></a>
     </div>
@@ -119,7 +119,6 @@
         <tbody id="container">
 
 
-            <!-- Add more rows as needed -->
         </tbody>
     </table>
 
@@ -130,15 +129,19 @@
 
 </body>
 
+
+
 </html>
 
 <script>
-    let url = "http://localhost:9000";
+    let url = "https://drab-red-nightingale-cape.cyclic.app/";
     let token = localStorage.getItem("token")
     let main = document.getElementById("container");
 
 
-
+    window.addEventListener("load", () => {
+        onAdd()
+    })
     const onAdd = () => {
 
 
@@ -154,12 +157,44 @@
             .then(data => {
 
                 console.log(data)
-                display(data)
+                    // display(data)
+
+                // data.forEach(el => {
+                //     let card = document.createElement("tr");
+
+                //     let ID = document.getElementById("td")
+                //     ID.textContent = el._id;
+                //     let title = document.getElementById("td")
+                //     title.textContent = el.title;
+                //     let Body = document.getElementById("td")
+                //     Body.textContent = el.body;
+                //     let Delete = document.getElementById("td")
+                //     Delete.innerHTML = '<button>Delete</button>';
+                //     let Update = document.getElementById("td")
+                //     Update.innerHTML = '<button>Update</button>';
+
+
+
+                //     card.appendChild(ID, title, Body, Delete, Update)
+
+                //     main.append(card)
+
+                // });
+
+                main.innerHTML =
+                    `
+                    <pre>
+                      ${JSON.stringify(data,null,1)}
+                      </pre>
+  `
+
+
+
             })
             .catch(err => console.log(err))
     }
 
-    onAdd()
+    // onAdd()
 
     function display(data) {
         main.innerHTML = null
