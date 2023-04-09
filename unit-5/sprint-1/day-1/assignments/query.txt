@@ -2,6 +2,6 @@
 2.  db.countries.find({currency: "EUR"})
 3.  db.countries.find({"timezones.gmtOffset": 3600})
 4.  db.countries.find({"timezones": {$elemMatch: {gmtOffset: 3600,tzName: "Central European Time"}}})
-5.  
+5.  db.collection.find({$where: "this.timezones.length > 1"})
 6.  db.collection.find({"translations.kr": { $exists: true }})
   
