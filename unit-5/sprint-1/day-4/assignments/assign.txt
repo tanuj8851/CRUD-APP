@@ -1,0 +1,27 @@
+3.   Create a compound index on the collection that includes at least 2 fields (e.g. age and location).
+
+Ans. > db.mycollection.createIndex({ age: 1, location: 1 })
+
+4. Use the explain() function to analyze the performance of a query that uses the compound index.
+
+Ans. > db.mycollection.find({ age: { $gte: 30 }, location: "San Francisco" }).explain()
+
+5.  Create a single field index on a field that is not included in the compound index.
+
+Ans. > db.mycollection.createIndex({ name: 1 })
+
+6. Use the explain() function to compare the performance of a query using the single field index to the performance of a query using the compound index.
+
+Ans. > db.mycollection.find({ name: "Alice" }).explain()
+> db.mycollection.find({ age: { $gte: 30 }, location: "San Francisco" }).explain()
+
+7. Drop the single field index and create a multi-key index on an array field in one of the documents.
+
+Ans. > db.mycollection.dropIndex({ name: 1 })
+> db.mycollection.updateOne({ name: "Alice" }, { $set: { hobbies: ["reading", "music"] } })
+> db.mycollection.createIndex({ hobbies: 1 })
+
+
+8.  Use the explain() function to analyze the performance of a query that uses the multi-key index.
+
+Ans. > db.mycollection.find({ hobbies: "reading" }).explain()
