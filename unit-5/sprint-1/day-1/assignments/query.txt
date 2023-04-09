@@ -1,0 +1,7 @@
+1.  db.countries.find({region: "Asia"})
+2.  db.countries.find({currency: "EUR"})
+3.  db.countries.find({"timezones.gmtOffset": 3600})
+4.  db.countries.find({"timezones": {$elemMatch: {gmtOffset: 3600,tzName: "Central European Time"}}})
+5.  
+6.  db.collection.find({"translations.kr": { $exists: true }})
+  
